@@ -1,0 +1,1764 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extbook
+\begin_preamble
+\usepackage{fancyhdr}
+\setcounter{secnumdepth}{5}   % depth of numbering of sectionning commands
+\setcounter{tocdepth}{3}           % depth of table of contents
+\usepackage[T1]{fontenc}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage [french]{babel}
+
+\usepackage{lettrine}
+\usepackage{lastpage}
+\usepackage{ae}
+\usepackage[ec]{aeguill}
+\usepackage{hyperref}
+\usepackage{colortbl}
+\hypersetup{
+%   verbose,
+%   hypertexnames=false,
+    bookmarksopenlevel=2,
+%   bookmarksopen,
+    bookmarksnumbered,
+    colorlinks,
+    plainpages=false,
+%   linktocpage,
+    pdfstartview=FitV,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+}
+
+
+%% Definition for Big letter at the beginning of a paragraph
+%%
+\def\PARstart#1#2{\begingroup\def\par{\endgraf\endgroup\lineskiplimit=0pt}
+    \setbox2=\hbox{\uppercase{#2} }\newdimen\tmpht \tmpht \ht2
+    \advance\tmpht by \baselineskip\font\hhuge=cmr10 at \tmpht
+    \setbox1=\hbox{{\hhuge #1}}
+    \count7=\tmpht \count8=\ht1\divide\count8 by 1000 \divide\count7 by\count8
+    \tmpht=.001\tmpht\multiply\tmpht by \count7\font\hhuge=cmr10 at \tmpht
+    \setbox1=\hbox{{\hhuge #1}} \noindent \hangindent1.05\wd1
+    \hangafter=-2 {\hskip-\hangindent \lower1\ht1\hbox{\raise1.0\ht2\copy1}%
+    \kern-0\wd1}\copy2\lineskiplimit=-1000pt}
+%% 
+
+\makeatletter
+%\def \datemoi{\footnotesize préVersion du \number\day\ \ifcase\month \or janvier \or f\'evrier \or mars \or avril \or mai \or juin \or juillet \or ao\^ut \or septembre \or octobre \or novembre \or d\'ecembre \fi\number\year}
+\def \datemoi{}
+\def \heure{{\count0=\time \divide\count0 by 60
+        \count1 =\count0 \multiply\count1 by 60
+        \advance \count1 by -\time
+        \deuxchiffres{\count0}h \deuxchiffres{-\count1}}}
+\def \deuxchiffres#1{\edef \next{\number#1}%
+    \expandafter\deuxchiffresaux\next\end}
+\def \deuxchiffresaux#1#2\end{\def\next{#2}%
+    \ifx \next\empty 0#1\else #1#2\fi}
+\makeatother
+
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+%\vspace*{\hfill }
+\begin{center}
+%Cette page est laissée blanche intentionnellement
+\end{center}
+%\vspace{\hfill }
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+\pagestyle{fancy}
+
+% ceci permet d'avoir les noms de chapitre et section en minuscules
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+
+\newcommand{\monstyleintro}{%
+%\pagestyle{fancy}
+\pagenumbering{arabic}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\fancyhead[LO,RE]{\bfseries Introduction Générale}
+%\fancyfoot[LE,RO]{Introduction Générale}
+%\fancyfoot[RO]{Introduction Générale}
+\fancyfoot[LE]{\datemoi}
+%\fancyfoot[RE]{\small \textbf{L}aboratoire d'\textbf{A}utomatique et de \textbf{M}écanique \textbf{I}ndustrielles et \textbf{H}umaines}
+%\fancyfoot[LO]{\footnotesize \sl Mise en \OE{}uvre de Lois de Commande pour les Modèles Flous de Type Takagi-Sugeno}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}  % espace pour le filet
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyhead[r]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+\newcommand{\monstylerefperso}{%
+%\pagestyle{fancy}
+%\pagenumbering{arabic}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\fancyhead[LO,RE]{\bfseries Références Personnelles}
+%\fancyfoot[LE,RO]{Références Personnelles}
+\fancyfoot[LE]{\datemoi}
+%\fancyfoot[RE]{\small \textbf{L}aboratoire d'\textbf{A}utomatique et de \textbf{M}écanique \textbf{I}ndustrielles et \textbf{H}umaines}
+%\fancyfoot[LO]{\footnotesize \sl Mise en \OE{}uvre de Lois de Commande pour les Modèles Flous de Type Takagi-Sugeno}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}  % espace pour le filet
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyhead[r]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+\newcommand{\monstylenotation}{%
+%\pagestyle{fancy}
+%\pagenumbering{arabic}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\fancyhead[LO,RE]{\bfseries Liste des Notations Principales}
+%\fancyfoot[LE,RO]{Références Personnelles}
+\fancyfoot[LE]{\datemoi}
+%\fancyfoot[RE]{\small \textbf{L}aboratoire d'\textbf{A}utomatique et de \textbf{M}écanique \textbf{I}ndustrielles et \textbf{H}umaines}
+%\fancyfoot[LO]{\footnotesize \sl Mise en \OE{}uvre de Lois de Commande pour les Modèles Flous de Type Takagi-Sugeno}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}  % espace pour le filet
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyhead[r]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+
+\newcommand{\monstylechap}{%
+%\pagestyle{fancy}
+\pagenumbering{arabic}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries \small Chapitre \thechapter~: \leftmark}
+%\fancyfoot[LE,RO]{\bfseries\leftmark\copyright\ 99\ Yann MORERE}
+%\fancyfoot[LE,RO]{Chapitre \thechapter~: \leftmark}
+\fancyfoot[LE]{\datemoi}
+%\fancyfoot[RE]{\small \textbf{L}aboratoire d'\textbf{A}utomatique et de \textbf{M}écanique \textbf{I}ndustrielles et \textbf{H}umaines}
+%\fancyfoot[LO]{\footnotesize \sl Mise en \OE{}uvre de Lois de Commande pour les Modèles Flous de Type Takagi-Sugeno}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}  % espace pour le filet
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyhead[r]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+\newcommand{\monstyleconclu}{%
+%\pagestyle{fancy}
+%\pagenumbering{arabic}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\fancyhead[LO,RE]{\bfseries Conclusion Générale}
+\fancyfoot[LE]{\datemoi}
+%\fancyfoot[RE]{\small \textbf{L}aboratoire d'\textbf{A}utomatique et de \textbf{M}écanique \textbf{I}ndustrielles et \textbf{H}umaines}
+%\fancyfoot[LO]{\footnotesize \sl Mise en \OE{}uvre de Lois de Commande pour les Modèles Flous de Type Takagi-Sugeno}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}  % espace pour le filet
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyhead[r]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+\newcommand{\monstylebiblio}{
+%\pagenumbering{arabic}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\fancyhead[RE,LO]{\bfseries \leftmark}
+%\fancyfoot[LE,RO]{\leftmark}
+\fancyfoot[LE]{\datemoi}
+%\fancyfoot[RE]{\small \textbf{L}aboratoire d'\textbf{A}utomatique et de \textbf{M}écanique \textbf{I}ndustrielles et \textbf{H}umaines}
+%\fancyfoot[LO]{\footnotesize \sl Mise en \OE{}uvre de Lois de Commande pour les Modèles Flous de Type Takagi-Sugeno}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}  % espace pour le filet
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyhead[r]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+\newcommand{\monstyletoc}{
+\pagenumbering{roman}
+\fancyhf{}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+
+\newcommand{\monstyleannexe}{%
+%\pagestyle{fancy}
+%\pagenumbering{arabic}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries Annexe \thechapter~: \leftmark}
+%\fancyfoot[LE,RO]{Annexe \thechapter~: \leftmark}
+\fancyfoot[LE]{\datemoi}
+%\fancyfoot[RE]{\small \textbf{L}aboratoire d'\textbf{A}utomatique et de \textbf{M}écanique \textbf{I}ndustrielles et \textbf{H}umaines}
+%\fancyfoot[LO]{\footnotesize \sl Mise en \OE{}uvre de Lois de Commande pour les Modèles Flous de Type Takagi-Sugeno}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}  % espace pour le filet
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyhead[r]{\bfseries\thepage\ /\ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+}
+}
+
+\newcommand{\monstylelistefigure}{%
+%\pagenumbering{roman}
+\fancyhf{}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+
+}
+}
+
+
+\newcommand{\monstylelistetableau}{%
+%\pagenumbering{roman}
+\fancyhf{}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+
+}
+}
+
+\newcommand{\monstylelistealgo}{%
+%\pagenumbering{roman}
+\fancyhf{}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+
+\fancypagestyle{plain}{ %pages de tetes de chapitre
+\fancyhf{}
+%\fancyhead{}    %supprime l'entete
+%\fancyfoot{}%supprime le pied de page
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %le filet haut
+\renewcommand{\footrulewidth}{0pt}%le filet bas
+
+}
+}
+
+\AtBeginDocument{
+\floatname{algorithm}{Algorithme}
+\renewcommand\listalgorithmname{Liste des Algorithmes}
+\renewcommand\figurename{Figure }
+}{}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Rapport de Projet
+\begin_inset Newline newline
+\end_inset
+
+Interactions Homme-Machine
+\lang french
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{1cm}
+\end_layout
+
+\end_inset
+
+
+\lang english
+
+\begin_inset Graphics
+	filename img/logo-rapport.png
+	lyxscale 17
+	display false
+	scale 20
+	BoundingBox -150bp 0bp 2057bp 1000bp
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{1cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Marko MARTIC
+\end_layout
+
+\begin_layout Date
+Avril 2021
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+monstyletoc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+monstylechap
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+
+\lang french
+Introduction
+\end_layout
+
+\begin_layout Section
+
+\lang french
+Get Started
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Pré-requis :
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+QT 5.14.1 (aucune compatibilité n'a été vérifiée avec d'autres versions que
+ celle-ci)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Pour démarrer démarrer rapidement :
+\end_layout
+
+\begin_layout Enumerate
+
+\lang french
+Télécharger le projet du git : https://git.unistra.fr/martic/i-hm
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\lang french
+seuls trois enseignants ont été ajoutés au git (@scholet, @p.guehl, @rwitz)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\lang french
+Ouvrir le fichier sources/LaBanque.pro avec QT 5.14.1
+\end_layout
+
+\begin_layout Enumerate
+
+\lang french
+Enjoy
+\end_layout
+
+\begin_layout Section
+
+\lang french
+Propos Introductifs
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Dans le cadre de l'Unite d'Enseignement Interactions Homme-Machine (IHM)
+ en troisième année de Licence d'Informatique à l'Université de Strasbourg,
+ nous devons réaliser une interface utilisateur pour la célèbre entreprise
+ fictive du secteur bancaire, sobrement nommée 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og La Banque 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Les employés de La Banque utiliseraient notre logiciel pour avoir un compte
+ rendu de vente trimestriel (pour chaque Comité Directeur), mais également
+ pour voir la performance des différents banquiers.
+\end_layout
+
+\begin_layout Section
+
+\lang french
+Objectifs
+\end_layout
+
+\begin_layout Standard
+Le sujet nous donne 3 objectifs principaux :
+\end_layout
+
+\begin_layout Enumerate
+Afficher le volume de produits vendus sur chaque canal
+\end_layout
+
+\begin_layout Enumerate
+Pouvoir sélectionner une ou plusieurs agences et voir ses volumes de ventes
+ par canal
+\end_layout
+
+\begin_layout Enumerate
+Une vue aussi détaillée que possible du canal
+\lang french
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og Prêt 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Egalement, il est compté sur notre force d'initiative et de prévoyance afin
+ de trouver d'autres fonctionnalités pertinentes qui intéresseront les employés
+ de la Banque, ce seront des fonctionnalités Bonus et devront être précisés
+ comme telles dans le rapport.
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Le logiciel doit être développé avec QT 5.14.1 en C++.
+\end_layout
+
+\begin_layout Section
+Notation
+\end_layout
+
+\begin_layout Standard
+Concernant la notation, c'est plus ou moins équitablement partagé entre
+ ce rapport-ci qui contient entre autre les wireframes, et la réalisation.
+\end_layout
+
+\begin_layout Standard
+De mon côté, je préfère mettre l'accent sur l'IHM/wireframes, même si je
+ n'arrive pas au bout de leur développement back-end, car le but pour moi
+ ici ce serait de progresser en IHM, pas tant en POO.
+\end_layout
+
+\begin_layout Section
+Plan
+\end_layout
+
+\begin_layout Standard
+Il nous est demandé de détailler toutes les phases de travail que nous avons
+ suivies, elles seront détaillées dans les chapitres suivants.
+\end_layout
+
+\begin_layout Chapter
+
+\lang french
+Phase 1 : Compréhension du sujet
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Ici il s'agissait principalement de comprendre le langage métier et s'approprier
+ les problématiques soulevées par le sujet
+\end_layout
+
+\begin_layout Chapter
+
+\lang french
+Phase 2 : Wireframes
+\end_layout
+
+\begin_layout Section
+BONUS : Page de connexion + Préférences utilisateurs
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:BONUS-:-Page"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Wireframe
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/wireframe/ihm_connexion.png
+	display false
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+wireframe : connexion + préférences
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Page de connexion
+\end_layout
+
+\begin_layout Standard
+Afin d'éviter que n'importe qui en possession du logiciel puisse accéder
+ aux données de La Banque, une vue pour la connexion est présente.
+\end_layout
+
+\begin_layout Standard
+C'est une vue Bonus.
+\end_layout
+
+\begin_layout Standard
+Une vue assez sommaire, sobre.
+ Un logo y est présent, deux labels, deux textbox et un bouton de connexion.
+\end_layout
+
+\begin_layout Standard
+Notre application est une application de 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og à risque 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ car permet d'accéder à des données très confidentielles sur la performance
+ de La Banque.
+ Pour cette raison, cette vue reste très primaire sur ses indications de
+ connexion.
+ Il n'y a aucun bouton pour récupérer son mot de passe, ni de de checkBox
+ 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og Se Souvenir de moi 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+
+\lang english
+ pour des raisons de sécurité.
+ Si le combo username/password n'est pas bon on ne donne pas plus d'indications
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+contrairement à Facebook par exemple, qui quand vous entrez l'adresse mail
+ et un mauvais mot de passe, va jusqu'à afficher la photo de profil+nom+prénom
+ du compte associé à l'adresse mail....
+ Très mauvais pour l'anonymat
+\end_layout
+
+\end_inset
+
+, mais une msgBox ressurgit en disant que quelque chose d'imprévu s'est
+ produit et stipule de contacter l'administrateur réseaux (avec éventuellement
+ un code d'erreur à communiquer? Todo.).
+\end_layout
+
+\begin_layout Standard
+Ici je rogne donc sur la partie Guidage du cours, pour privilégier la sécurité.
+\end_layout
+
+\begin_layout Subsection
+Préférences utilisateur
+\end_layout
+
+\begin_layout Standard
+Au premier démarrage, il est demandé à l'utilisateur de choisir son agence
+ (sur laquelle l'appli va démarrer ensuite) ainsi que son thème visuel (clair
+ ou sombre).
+ Cette vue n'est ensuite plus affichée, les paramètres sont sauvegardés
+ dans un fichier en dur.
+ Il est possible de revenir sur ces paramètres plus tard.
+\end_layout
+
+\begin_layout Section
+Tableau de Bord
+\end_layout
+
+\begin_layout Standard
+Le but ici est de faire quelque chose d'efficace, intuitif, visuellement
+ attractif et plaisant à utiliser.
+ Cette vue privilégie la consultation rapide des stats de son agence, et
+ leur impression pour le comité directeur, raison principale qui a poussé
+ La Banque à nous contacter.
+\end_layout
+
+\begin_layout Standard
+Avec quelques bonus à noter :
+\end_layout
+
+\begin_layout Itemize
+affichage du chiffre d'affaire global et par canal
+\end_layout
+
+\begin_layout Itemize
+affichage pour chaque barre de chaque diagramme à barres le pourcentage
+ d'augmentation ou de baisse par rapport à la période de référence (3 derniers
+ mois par défaut, configurable)
+\end_layout
+
+\begin_layout Subsection
+Wireframe
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/wireframe/TDB.png
+	lyxscale 50
+	display false
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+wireframe : Tableau De Bord
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Element Primordial : GroupBox
+\end_layout
+
+\begin_layout Standard
+La GroupBox est pour moi l'élément qui ajoute une grande plus value dans
+ une interface.
+ Elle permet de délimiter une zone, de luir donner une couleur de fond,
+ (un nom, )son contenu est facilement identifiable par l'utilisateur comme
+ faisant partie d'un même ensemble.
+ C'est un élément qui à lui seul peut changer le statut d'une interface
+ 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og amateur et mal conçue
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ en 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og bien faite et agréable à regarder/utiliser
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Barre de Statut Haute
+\end_layout
+
+\begin_layout Standard
+Ici il est question de la barre du haut fixe à travers les menus, qui contient
+ le Logo, la date et heure à la seconde près (mise à jour en temps réel),
+ la période de référence(bonus)
+\lang french
+, son nom d'utilisateur, la date de sa dernière connexion, et le bouton
+ de déconnexion.
+\begin_inset Newline newline
+\end_inset
+
+Les différents éléments ont différentes utilités :
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+La date et heures servent à rassurer l'utilisateur, lui faire comprendre
+ même si aucun graphique ne bouge, l'application est en cours de fonctionnement
+ et sera réactive au besoin.
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+La période de référence est la période de comparaison par rapport à la période
+ actuelle choisie dans le widget 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og Options 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Son nom d'utilisateur pour vérifier qu'on est bien sur son compte et sur
+ sa tablette, et non sur la tablette d'un collègue qui est similaire à la
+ nôtre.
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+La date/heure de sa dernière connexion pour rassurer l'utilisateur que personne
+ d'autre que lui n'a accès à son compte (ou au contraire l'avertir qu'il
+ y a un souci...)
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Le bouton de déconnexion, qui devra être réactif sur une plus large zone
+ que le simple texte
+\end_layout
+
+\begin_layout Subsection
+Menu vertical droit
+\end_layout
+
+\begin_layout Standard
+C'est un menu vertical qui permet d'accéder aux différentes vues de l'applicatio
+n.
+\end_layout
+
+\begin_layout Standard
+Un logo représentatif et un texte se situe en dessous de chaque bouton,
+ pour faciliter l'apprentissage et ensuite l'utilisation de l'interface.
+\end_layout
+
+\begin_layout Standard
+Quand on est sur une vue qui correspond au bouton, le bouton en question
+ est plus foncé que les autres pour simuler un 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og enfoncement 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Control Box Options
+\end_layout
+
+\begin_layout Standard
+C'est ici qu'est contrôlée la vue du Tableau De Bord, on peut y choisir
+ son agence, ou plusieurs agences afin de faire des comparaisons, la période
+ de comparaison, la caractéristique à représenter par tous les graphes (volume/€
+/%) et un bouton qui permet d'appliquer les options.
+\begin_inset Newline newline
+\end_inset
+
+Les différents éléments ont différentes utilités :
+\end_layout
+
+\begin_layout Itemize
+Choix de(s) l'agence(s) : Une liste déroulante avec des CheckBox.
+ On aurait pu disposer les checkbox directement dans la group box des Options,
+ cependant comme le but avant tout ici est d'afficher les stats de son agence,
+ il n'est pas judicieux de prendre de l'espace pour rien, il vaut mieux
+ en laisser pour les autres widgets.
+ L'accès aux autres agences est rendu plus difficile (2 clics au lieu d'un)
+ pour laisser de la place pour quelque chose de plus utile.
+\end_layout
+
+\begin_layout Itemize
+La période de comparaison : L'utilisateur doit pouvoir comparer les chiffres
+ de n'importe quelle période avec n'importe quelle période.
+ Au lieu de le laisser choisir deux dates dans des widgets DateEdit, j'ai
+ préféré lui laisser choisir une seule date, et une durée.
+ Ce qui revient exactement au même, mais c'est beaucoup plus pratique à
+ l'utilisation dans notre cas.
+ Ca permet de rapidement switcher entre comparaison de 3 mois, 6 mois ou
+ 1 an.
+ Cette façon de faire n'étant pas commune, le mot 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og Début
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ permet normalement à l'utilisateur de comprendre le fonctionnement de cet
+ élément.
+\end_layout
+
+\begin_layout Itemize
+Changer le type de tous les graphes est plus pratique que les faire un par
+ un.
+\end_layout
+
+\begin_layout Itemize
+Le bouton d'application des options : le bouton est par défaut désactivé,
+ dès qu'il y a un changement dans les options il devient fonctionnel.
+ Et son activation le rend désactivé de nouveau.
+ On aurait pu croire qu'il est de trop, et qu'il suffirait de mettre à jour
+ les graphes dès qu'il y a un changement dans les options, mais cela paraîtrait
+ bizarre à l'utilisateur que ses graphes changent à chaque option alors
+ qu'il n'a pas fini de toutes les cocher/activer/désactiver.
+\end_layout
+
+\begin_layout Subsection
+Widgets
+\end_layout
+
+\begin_layout Standard
+Il y a plusieurs widgets 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og ensemble de graphes 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+.
+ Du plus précis au plus global.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Cependant ce qu'il y a d'intéressant ce sont les informations complémentaires
+ :
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Pourcentage sur chaque barre affichant l'évolution de la période sélectionnée
+ par rapport à la période de référence avec une couleur rouge ou verte adaptée.
+ Elément que j'estime important, car souvent, les agences ont des objectifs
+ d'augmentation de leur chiffre d'affaires par trimestre.
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Une CheckBox pour chaque ensemble de barres pour imprimer, ou pour pré-cocher
+ pour la vue Stat, certains éléments.
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Des boutons pour changer le type de graphique : le bouton 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og volume 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ et le bouton 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og € 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ sont tous deux checkables et mutuellement exclusifs.
+ Le bouton 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og %
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ est lui aussi checkable indépendamment des deux autres et permet de représenter
+ le pourcentage de chaque version par rapport au total de la famille avec
+ des diagrammes camembert.
+\end_layout
+
+\begin_layout Subsection
+A Améliorer (après coup)
+\end_layout
+
+\begin_layout Standard
+On voit que les boutons de choix de type de graphiques sous chaque ensemble
+ de graphes ne sont pas de même taille pour le graphe Global que pour le
+ graphe µProduits bancaires, le design serait un peu à changer en ce sens
+ mais ce n'est pas le plus urgent.
+\end_layout
+
+\begin_layout Section
+Stat (Statistiques)
+\end_layout
+
+\begin_layout Standard
+Le but ici est de pouvoir comparer toute agence ainsi que tout banquier.
+\end_layout
+
+\begin_layout Subsection
+Wireframe
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/wireframe/stat.png
+	display false
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+wireframe : stat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Control Box
+\end_layout
+
+\begin_layout Standard
+Ici les agences sont directement disposées en CheckBox, il est aussi possible
+ de faire des projections dans le futur en cochant la case 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og Estimé 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+, et il est possible de sélectionner tout produit de tout canal.
+\end_layout
+
+\begin_layout Subsection
+Widgets
+\end_layout
+
+\begin_layout Standard
+Il y a un widget listant tous les banquiers des agences sélectionnées ainsi
+ qu'un widget listant les ventes de toutes les banques.
+\end_layout
+
+\begin_layout Section
+Aide & Réglages
+\end_layout
+
+\begin_layout Standard
+Parties pas vraiment développées, ni réalisées, mais obligatoires pour l'app
+ finale tout de même donc présentes.
+\end_layout
+
+\begin_layout Subsection
+Wireframes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/wireframe/aide.png
+	display false
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+wireframe : aide
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/wireframe/réglages.png
+	display false
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+wireframe : réglages
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Phase 3 : Photoshop + Charte Graphique
+\end_layout
+
+\begin_layout Standard
+Ici il était question de trouver une identité graphique à La Banque, notamment
+ :
+\end_layout
+
+\begin_layout Itemize
+Le logo
+\end_layout
+
+\begin_layout Itemize
+Couleurs du darkmode (Les couleurs du mode 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og light 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ seront celles par défaut de Qt)
+\end_layout
+
+\begin_layout Section
+Logo + Dark Mode
+\end_layout
+
+\begin_layout Standard
+La Banque fait penser à l'or, c'est une couleur assez prestige dans l'inconscien
+t collectif donc dans le thème de l'application.
+ J'ai choisi une dominante jaune qui tire vers le marron avec un look un
+ peu prestige.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/LogoLaBanque.png
+	display false
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+logo La Banque
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Grâce au cercle chromatique, j'ai choisi des couleurs complémentaires ainsi
+ que quelques variantes pour faire la palette de couleurs, que voici :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/charte graphique.png
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+charte graphique
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Choix des couleurs
+\end_layout
+
+\begin_layout Standard
+De manière générale pour les couleurs du mode sombre, elles vont de la plus
+ sombre à la plus claire, de l'arrière plan au premier plan.
+\begin_inset Newline newline
+\end_inset
+
+Quant aux couleurs des boutons, ils ont leur couleur normale, qui s'éclaircit
+ au survol (le bouton ressort), et une fois que le bouton est pressé sa
+ couleur devient plus terne (pour simuler un enfoncement).
+\end_layout
+
+\begin_layout Section
+Couleurs HSL
+\end_layout
+
+\begin_layout Standard
+Pour avoir les variations plus ou moins claires d'une couleur, le plus simple
+ que j'ai trouvé était de prendre la couleur en question en mode HSL (hue
+ - saturation - light), et d'augmenter/diminuer la troisième valeur.
+\end_layout
+
+\begin_layout Section
+Thème QT
+\end_layout
+
+\begin_layout Standard
+Une feuille de style a été choisie depuis ce site web : https://qss-stock.devsecs
+tudio.com/templates.php puis modifiée pour correspondre à la charte graphique.
+\end_layout
+
+\begin_layout Chapter
+Phase 4 : Programmation
+\end_layout
+
+\begin_layout Standard
+Cette phase est la moins aboutie, car pas très utile pour l'IHM, néanmoins,
+ il y a un minimum de fait.
+ 
+\end_layout
+
+\begin_layout Section
+Graphes
+\end_layout
+
+\begin_layout Standard
+Pour les graphes j'ai utilisé le package externe 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og QCustomPlot 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+ car il permet d'exporter les graphes sous forme d'image (sera utile pour
+ imprimer un document), mais aussi d'annoter les barres tel que je les ai
+ dessinées dans les wireframes.
+\end_layout
+
+\begin_layout Section
+
+\lang french
+CheckBoxList
+\end_layout
+
+\begin_layout Standard
+Dans la vue du Tableau de Bord, les agences sont cochées dans une liste
+ déroulante.
+ Ce widget n'existe pas tel quel dans Qt, je ne voulais pas changer pour
+ ne pas tomber dans le 
+\lang french
+techno-centrisme, 
+\lang english
+j'ai essayé de l'implémenter sans grand succès, puis j'ai retrouvé un widget
+ déjà réalisé sur github libre de droit au nom de 
+\lang french
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+og qchecklist.h 
+\backslash
+fg{}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Chapter
+Remarques & Conclusion
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Remarques :
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Beaucoup de temps a été dépensé sur des détails au niveau du back-end (notamment
+ les graphes et les checkboxList) pour coller au plus aux wireframes...
+ Je voulais à tout prix éviter le techno-centrisme donc je persévérais jusqu'à
+ trouver QCustomPlot 
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+J'ai entendu dire par des camarades que la responsivité était importante.
+ Je ne l'ai pas du tout prise en compte, toutes les vues ont été faites
+ pour passer au mieux sur tablette et ordinateurs.
+ Mais évidemment, il aurait fallu faire du responsive, ou carrément repenser
+ l'interface entièrement, car l'utilisation sur les deux appareils est différent
+e.
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Dorénavant, éviter de paramétrer les widgets dans le Qt Creator directement.
+ Il serait préférable de tout mettre dans le code, afin d'avoir une meilleure
+ visibilité sur ce qu'il se passe, ainsi qu'une modification plus aisée.
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+Le professeur conseillait une approche itérative et incrémentale, moi je
+ m'approchais plus de l'itératif avec un peu d'incrémental par-ci par-là.
+ Chose qui serait à corriger.
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/iteinc.png
+	display false
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\lang french
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+itératif/incrémental
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Conclusion :
+\end_layout
+
+\begin_layout Itemize
+
+\lang french
+L'application est loin d'être finie, mais a une base saine et continuable.
+ To be continued...
+\end_layout
+
+\end_body
+\end_document

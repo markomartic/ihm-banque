@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ressources/img/LogoLaBanque.png</file>
+        <file>ressources/stylesheet/theme.qss</file>
+    </qresource>
+</RCC>
